@@ -24,7 +24,7 @@ bool isArraySorted(int arr[], int numArrayElems);
 // Pre: arr is a valid integer array with numArrayElems elements
 // Post: returns true if the array is sorted in ascending order
 
-int findNposition(int arr[], int numArrayElems; int target);
+int findNposition(int arr[], int numArrayElems, int target);
 // Pre: arr is a valid integer array with numArrayElems elements
 // Post: returns the index where target should be inserted/removed to maintain sorted order
 
@@ -56,20 +56,20 @@ int main() {
    int element;
    cout << "Enter a value to insert: ";
    cin >> element;
-   insertElement(numArray, numArrayElems, CAPACITY, element); 
-   // FOR WHEN I COME BACK: FIX HOW TO CORRECTLY CALL THIS BOOLEAN FUNCTION
+   if (insertElement(numArray, numArrayElems, CAPACITY, element)) {
+   cout << "Element inserted successfully.\n";
+   } else {
+      cout << "Insertion failed. The array is full.\n";
+   }
    displayArray(numArray, numArrayElems);
 
 
 
    // 3. ToDo: Use your isArraySorted function to tell whether the array is sorted.
-   if (isArraySorted(numArray, numArrayElems)){
-      continue;
-   } else {
+   if (!isArraySorted(numArray, numArrayElems)){
       cout << "The array is not sorted";
       return 0;
    }
-
 
    // 4. ToDo: Read in a value from the user. Call your searchElement function
    // to get the position to remove, then call removeElement to delete it.
@@ -78,8 +78,13 @@ int main() {
    // Display the content of the array afterwards 
    int element2;
    cout << "Enter a value to remove: ";
-   removeElement(numArray, numArrayElems, CAPACITY, element2);
-
+   cin >> element2;
+   if (removeElement(numArray, numArrayElems, CAPACITY, element2)) {
+      cout << "Element removed successfully.\n";
+   } else {
+      cout << "Removal failed. Element not found.\n";
+   }
+   displayArray(numArray, numArrayElems);
 
    return 0;
 }
@@ -100,7 +105,7 @@ void fillArray(int arr[], int& numArrayElems, int CAPACITY){
       if (value == -1){
          break;
       }
-      arr[numArrayElems++] = value // Post increment to store the value in the array and then increment numArrayElems
+      arr[numArrayElems++] = value; // Post increment to store the value in the array and then increment numArrayElems
    }
 }
 
@@ -113,7 +118,7 @@ bool isArraySorted(int arr[], int numArrayElems) {
    return true; // if loop completes, the array is sorted
 }
 
-int findNposition(int arr[], int numArrayElems; int target){
+int findNposition(int arr[], int numArrayElems, int target){
    int i = 0;
    while (i < numArrayElems && arr[i] < target){
       i++; // the loop moves forward until it finds an element in the array >= target
@@ -131,7 +136,7 @@ bool findElement(int arr[], int numArrayElems, int target){
 }
 
 bool insertElement(int arr[], int& numArrayElems, int CAPACITY, int element) {
-   if (numArray >= CAPACITY){
+   if (numArrayElems >= CAPACITY){
       return false; // no more values can be added
    }
 
@@ -148,9 +153,11 @@ bool insertElement(int arr[], int& numArrayElems, int CAPACITY, int element) {
 }
 
 bool removeElement(int arr[], int& numArrayElems, int CAPACITY, int element) {
-   for (int k = 0; k < numArrayElems, k++){
-      if (!arr[k] == element){
-         return false; 
+   for (int k = 0; k < numArrayElems; k++){
+      if (arr[k] == element){ 
+         //it should not be arr[k] != elem because the loop will stop as soon as there is one value
+         //not equal to element
+         break; 
       }
    }
    int pos = findNposition(arr, numArrayElems, element);
