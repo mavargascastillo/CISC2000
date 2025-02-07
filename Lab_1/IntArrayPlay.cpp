@@ -57,7 +57,7 @@ int main() {
    cout << "Enter a value to insert: ";
    cin >> element;
    if (insertElement(numArray, numArrayElems, CAPACITY, element)) {
-   cout << "Element inserted successfully.\n";
+   cout << element << " has been added to the array.\n";
    } else {
       cout << "Insertion failed. The array is full.\n";
    }
@@ -80,7 +80,7 @@ int main() {
    cout << "Enter a value to remove: ";
    cin >> element2;
    if (removeElement(numArray, numArrayElems, CAPACITY, element2)) {
-      cout << "Element removed successfully.\n";
+      cout << element2 << " has been removed.\n";
    } else {
       cout << "Removal failed. Element not found.\n";
    }
