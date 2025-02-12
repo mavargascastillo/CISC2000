@@ -36,9 +36,9 @@ bool insertElement(int arr[], int& numArrayElems, int CAPACITY, int element);
 // Pre: arr is a valid integer array & numArrayElems <= CAPACITY
 // Post: Inserts element in sorted order if space is available
 
-//ToDo: Declare a function that removes an element (given its position) from a given array
-// Return whether or not the removal could be performed.
 bool removeElement(int arr[], int& numArrayElems, int CAPACITY, int element);
+// Pre: function that removes an element (given its position) from a given array
+// Post: Return whether or not the removal could be performed.
 
 int main() {
    int numArray[CAPACITY];	// an int array with a given CAPACITY
@@ -59,16 +59,17 @@ int main() {
    if (insertElement(numArray, numArrayElems, CAPACITY, element)) {
    cout << element << " has been added to the array.\n";
    } else {
-      cout << "Insertion failed. The array is full.\n";
+      cout << "Error: " << element << " cannot be added.\n";
    }
    displayArray(numArray, numArrayElems);
 
 
 
    // 3. ToDo: Use your isArraySorted function to tell whether the array is sorted.
-   if (!isArraySorted(numArray, numArrayElems)){
-      cout << "The array is not sorted";
-      return 0;
+   if (isArraySorted(numArray, numArrayElems)){
+      cout << "Array is sorted" << endl;
+   } else {
+      cout << "Array is not sorted" << endl;
    }
 
    // 4. ToDo: Read in a value from the user. Call your searchElement function
@@ -82,7 +83,7 @@ int main() {
    if (removeElement(numArray, numArrayElems, CAPACITY, element2)) {
       cout << element2 << " has been removed.\n";
    } else {
-      cout << "Removal failed. Element not found.\n";
+      cout << "Error: position out of range: " << element2 << endl;
    }
    displayArray(numArray, numArrayElems);
 
@@ -97,7 +98,7 @@ void displayArray(int arr[], int numArrayElems){
 }
 
 void fillArray(int arr[], int& numArrayElems, int CAPACITY){
-   cout << "Enter a list of up to 20 integers or -1 to end the list ";
+   cout << "Enter a list of up to 20 integers or -1 to end the list " << endl;
    
    int value;
    while (numArrayElems < CAPACITY){
@@ -153,6 +154,10 @@ bool insertElement(int arr[], int& numArrayElems, int CAPACITY, int element) {
 }
 
 bool removeElement(int arr[], int& numArrayElems, int CAPACITY, int element) {
+   if (element < 0) {
+      return false;
+   }
+   
    for (int k = 0; k < numArrayElems; k++){
       if (arr[k] == element){ 
          //it should not be arr[k] != elem because the loop will stop as soon as there is one value
