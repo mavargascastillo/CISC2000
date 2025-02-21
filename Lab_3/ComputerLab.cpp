@@ -126,7 +126,6 @@ void freeArrays(IntPtr labs[])
 {
 	for (int i = 0; i < NUMLABS; i++){
 		delete[] labs[i]; // Free dynamically allocated memory
-		labs[i] = nullptr; // Sets labs[i] as a null pointer to avoid dangling pointer issues 
 	}
 }
 
@@ -183,7 +182,7 @@ void login(IntPtr labs[], int labsizes[])
 		return;
 	}
 
-	cout << "Enter computer station number the user is logging in to (1-6):" << endl;
+	cout << "Enter computer station number the user is logging in to (1-" << labsizes[labNum -1] << "):" << endl; // -1 to adjust for 0-indexing
 	cin >> stationNum;
 	if (stationNum < 1 || stationNum > labsizes[labNum - 1]){
 		cout << "Invalid station number." << endl;
@@ -195,7 +194,7 @@ void login(IntPtr labs[], int labsizes[])
 	int stationIndex = stationNum - 1;
 
 	if (labs[labIndex][stationIndex] == -1){ //meaning the station is empty
-		labs[labIndex][stationIndex] == userID;
+		labs[labIndex][stationIndex] = userID;
 	} else {
 		cout << "Station is already in use." << endl;
 	}
@@ -210,12 +209,13 @@ void logout(IntPtr labs[], int labsizes[])
 	for (int i = 0; i < NUMLABS; i++){ // loop through each lab
 		for (int j = 0; j < labsizes[i]; j++){ // loop through each computer station
 			if (labs[i][j] == userID){
-				labs[i][j] == -1; // logs out the user
+				labs[i][j] = -1; // logs out the user
+				cout << "Logout user " << userID << " in Lab " << (i+1) << " at computer " << (j+1) << endl;
 				return;
 			}
 		}
 	}
-	cout << "User ID " << userID << " not found." << endl;
+	cout << "User not logged in." << endl;
 
 }
 
@@ -235,5 +235,5 @@ void search(IntPtr labs[], int labsizes[])
 			}
 		}
 	}
-	cout << "User ID " << userID << " not found." << endl;
+	cout << "User not logged in." << endl;
 }
