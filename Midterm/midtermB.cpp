@@ -1,4 +1,4 @@
-/* Top Comment Block Here: Put your name and explain the program!
+/* 
 CISC 2000
 Midterm B:
 Program asks user to fill a vector with prices, and then finds the largest price
