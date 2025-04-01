@@ -35,7 +35,6 @@ void CheckingAccount::output(ostream &outs) const {
 // Input function override
 void CheckingAccount::input(istream &ins) {
     BankAccount::input(ins);
-    cout << "Enter check fee: ";
     ins >> check_fee;
     check_fee = round(check_fee * 100) / 100; // Ensures only two decimal places
 }
