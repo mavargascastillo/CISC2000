@@ -11,7 +11,7 @@ Author: Miguel Ángel Vargas
 #include <string>
 // To Do: Include the approproiate header files
 #include "CheckingAccount.h"
-#include "SavingsAccount.h"
+#include "SavingAccount.h"
 
 using namespace std;
 

@@ -48,7 +48,7 @@ void CheckingAccount::check(int dollars, int cents) {
     // Round to two decimal places for accuracy
     totalAmount = round(totalAmount * 100) / 100;
 
-    if (totalAmount <= getBalance()) {
+    if (totalAmount <= get_balance()) {
         withdraw(dollars, cents);
         withdraw(0, static_cast<int>(round(check_fee * 100))); // Deduct check fee
     } else {

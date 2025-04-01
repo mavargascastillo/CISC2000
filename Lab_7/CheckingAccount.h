@@ -4,8 +4,6 @@
 using namespace std;
 
 // To Do: Protect from multiple declarations of CheckingAccount.
-#ifndef CHECKINGACCOUNT_H
-#define CHECKINGACCOUNT_H
 #pragma once
 
 
@@ -33,14 +31,14 @@ public:
     double getCheckFee() const;
 
 	// To Do: redefine the output function to include the check fee.
-    void output(ostream &outs) const override;
+    void output(ostream &outs) const;
     //Precondition: If outs is a file output stream, then outs has already been
     //connected to a file.
     //Postcondition: balance and check fee have been written to the stream outs.
  
 
 	// To Do: redefine the input function to include the check fee.
-    void input(istream &ins) override;
+    void input(istream &ins);
     //Precondition: If ins is a file input stream, then ins has already been
     //connected to a file.
     //Postcondition: balance and check fee have been read from the stream ins.
@@ -59,5 +57,3 @@ private:
     double check_fee; // the fee charged for each check transaction
 
 };
-
-#endif
