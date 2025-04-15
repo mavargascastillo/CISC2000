@@ -9,34 +9,34 @@ CommissionEmployee::CommissionEmployee()
 }
 
 // ToDo: implement the constructor, remember to call base class constructor
-CommissionEmployee::CommissionEmployee(string name, string SSN, double sales, double commission)
-
+CommissionEmployee::CommissionEmployee(const string& name, const string& SSN, double sales, double commission)
+    : Employee(name, SSN), sales(sales), commission(commission) 
 {
 	// deliberately empty
 	// cout << "CommissionEmployee(" << name << "," << SSN << "," << sales << "," << commission << ")\n"; 
 }
 
 // ToDo: implement accessor/mutators
-double ComissionEmployee::get_sales() const {
+double CommissionEmployee::get_sales() const {
 	return sales;
 }
 
-double ComissionEmployee::get_commission() const {
-	return comission;
+double CommissionEmployee::get_commission() const {
+	return commission;
 }
 
-void ComissionEmployee::set_sales(double s) {
+void CommissionEmployee::set_sales(double s) {
 	sales = s;
 }
 
-void ComissionEmployee::set_commission(double c) {
-	comission = c;
+void CommissionEmployee::set_commission(double c) {
+	commission = c;
 }
 
 // ToDo: implement virtual get_net_pay function
 // Hint: compensation is commission/100 * sales
-double ComissionEmployee::get_net_pay() const {
-	return (comission / 100.0) * sales;
+double CommissionEmployee::get_net_pay() const {
+	return (commission / 100.0) * sales;
 }
 
 // ToDo: implement the virtual print_check() function. Follow the model in SalariedEmployee
@@ -44,7 +44,8 @@ double ComissionEmployee::get_net_pay() const {
 void CommissionEmployee::print_check() const
 {
 	Employee::print_check(); // Call base class method
-	cout << "Salaried Employee. Regular Pay: " << salary << endl; 
+	cout << "Commission Employee." << endl;
+	cout << "Gross sales: " << get_sales() << "Commission: " << get_commission() << "Pay: " << get_net_pay() << endl; 
     cout << "_________________________________________________\n";
 }
 
@@ -56,11 +57,8 @@ istream& CommissionEmployee::promptInput(istream& in, ostream& out)
 	Employee::promptInput(in, out);
 
 	// ToDo: read the sales and commission.
-	out << "Enter sales and cmmission: ";
-	in >> sales, comission;
+	out << "Enter sales and commission: ";
+	in >> sales >> commission;
 
 	return in;
 }
-
-
-

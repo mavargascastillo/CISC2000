@@ -49,7 +49,8 @@ double Administrator::get_net_pay() const {
 // Hint: Use the base class print_check()
 void Administrator::print_check() const {
 	SalariedEmployee::print_check(); // Call base class method
-	cout << "Salaried Employee. Regular Pay: " << salary << endl; 
+	cout << "Administrator Title: " << get_title() << endl;
+	cout << "Bonus: " << get_bonus() << "Pay: " << get_net_pay() << endl; 
     cout << "_________________________________________________\n";
 }
 
@@ -61,12 +62,9 @@ istream & Administrator::promptInput(istream & in, ostream & out)
 	SalariedEmployee::promptInput(in, out);
 
 	// ToDo: read the bonus. Use ignorespace() to skip newline.
-	out << "Enter bonus amount: ";
+	out << "Enter bonus and title: ";
     in >> bonus;
 	ignorespace(in);
-
-	// ToDo: read the rest of the line for the title
-	out << "Enter job title: ";
     getline(in, title);  // Read full title with spaces
 
 	return in;

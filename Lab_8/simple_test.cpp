@@ -76,7 +76,7 @@ int main( )
 
 			//ToDo: Add to the lists as above
 			employeePtrs.push_back(admin);
-    		employeeSlices.push_back(*admin)
+    		employeeSlices.push_back(*admin);
 		}
 		else if (type == "commission")
 		{
